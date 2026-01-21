@@ -30,10 +30,18 @@ export class AuthService {
   readonly user = this.currentUser.asReadonly();
   
   constructor() {
-    // Load user if token exists
-    if (this.token()) {
-      this.loadCurrentUser().subscribe();
-    }
+    // Load user if token exists - defer to avoid circular dependency
+    // Will be called after app initialization
+    setTimeout(() => {
+      if (this.token()) {
+        this.loadCurrentUser().subscribe({
+          error: () => {
+            // Token might be invalid, clear it
+            this.logout();
+          }
+        });
+      }
+    }, 0);
   }
   
   login(email: string, password: string): Observable<LoginResponse> {
