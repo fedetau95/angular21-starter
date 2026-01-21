@@ -8,6 +8,7 @@
         <input
           type="email"
           id="email"
+          autocomplete="email"
           [formField]="loginForm.email"
           [class.error]="loginForm.email().touched() && loginForm.email().invalid()"
         />
@@ -25,6 +26,7 @@
         <input
           type="password"
           id="password"
+          autocomplete="current-password"
           [formField]="loginForm.password"
           [class.error]="loginForm.password().touched() && loginForm.password().invalid()"
         />
