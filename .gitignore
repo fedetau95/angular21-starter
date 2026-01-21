@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+out-tsc/
+**/out-tsc/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+backend/database.sqlite
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+**/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+.cursor/
+
+# Angular
+.angular/
+.angular/cache
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Package locks (opzionale - alcuni preferiscono includerli)
+# package-lock.json
+# yarn.lock
