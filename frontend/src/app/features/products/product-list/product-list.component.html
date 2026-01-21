@@ -1,0 +1,59 @@
+<div class="product-list">
+  <div class="header-actions">
+    <h1>Prodotti</h1>
+    <a routerLink="/products/new" class="btn btn-primary">Nuovo Prodotto</a>
+  </div>
+  
+  <div class="filters">
+    <select (change)="onCategoryChange($event)" class="filter-select">
+      <option value="">Tutte le categorie</option>
+      @for (category of categories(); track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+    
+    <select (change)="onStatusChange($event)" class="filter-select">
+      <option value="">Tutti gli status</option>
+      <option value="active">Attivo</option>
+      <option value="inactive">Inattivo</option>
+      <option value="pending">In attesa</option>
+    </select>
+  </div>
+  
+  @if (productService.loading$()) {
+    <div class="loading">Caricamento...</div>
+  } @else if (filteredProducts().length === 0) {
+    <div class="empty-state">
+      <p>Nessun prodotto trovato</p>
+      <a routerLink="/products/new" class="btn btn-primary">Crea il primo prodotto</a>
+    </div>
+  } @else {
+    <div class="products-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <div class="product-card">
+          <h3>{{ product.name }}</h3>
+          <p class="description">{{ product.description || 'Nessuna descrizione' }}</p>
+          <p class="price">{{ product.price | currency:'EUR' }}</p>
+          <div class="product-meta">
+            <span class="category">{{ product.category }}</span>
+            @switch (product.status) {
+              @case ('active') {
+                <span class="badge badge-success">Attivo</span>
+              }
+              @case ('inactive') {
+                <span class="badge badge-danger">Inattivo</span>
+              }
+              @case ('pending') {
+                <span class="badge badge-warning">In attesa</span>
+              }
+            }
+          </div>
+          <div class="product-actions">
+            <a [routerLink]="['/products', product.id]" class="btn btn-secondary">Dettagli</a>
+            <a [routerLink]="['/products', product.id, 'edit']" class="btn btn-secondary">Modifica</a>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

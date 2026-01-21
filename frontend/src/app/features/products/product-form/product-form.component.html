@@ -1,0 +1,101 @@
+<div class="product-form">
+  <div class="form-header">
+    <h1>{{ isEditMode() ? 'Modifica Prodotto' : 'Nuovo Prodotto' }}</h1>
+    <a routerLink="/products" class="back-link">← Torna alla lista</a>
+  </div>
+  
+  <form (submit)="onSubmit($event)" class="form-card">
+    <div class="form-group">
+      <label for="name">Nome *</label>
+      <input
+        type="text"
+        id="name"
+        [formField]="productForm.name"
+        [class.error]="productForm.name().touched() && productForm.name().invalid()"
+      />
+      @if (productForm.name().touched() && productForm.name().invalid()) {
+        <span class="error-message">
+          @for (error of productForm.name().errors(); track error) {
+            {{ error.message }}
+          }
+        </span>
+      }
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Descrizione</label>
+      <textarea
+        id="description"
+        [formField]="productForm.description"
+        rows="4"
+      ></textarea>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price">Prezzo *</label>
+        <input
+          type="number"
+          id="price"
+          [formField]="productForm.price"
+          step="0.01"
+          [class.error]="productForm.price().touched() && productForm.price().invalid()"
+        />
+        @if (productForm.price().touched() && productForm.price().invalid()) {
+          <span class="error-message">
+            @for (error of productForm.price().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="category">Categoria *</label>
+        <input
+          type="text"
+          id="category"
+          [formField]="productForm.category"
+          [class.error]="productForm.category().touched() && productForm.category().invalid()"
+        />
+        @if (productForm.category().touched() && productForm.category().invalid()) {
+          <span class="error-message">
+            @for (error of productForm.category().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" [formField]="productForm.status">
+        <option value="active">Attivo</option>
+        <option value="inactive">Inattivo</option>
+        <option value="pending">In attesa</option>
+      </select>
+    </div>
+    
+    @if (error()) {
+      <div class="alert alert-error">
+        {{ error() }}
+      </div>
+    }
+    
+    <div class="form-actions">
+      <a routerLink="/products" class="btn btn-secondary">Annulla</a>
+      <button
+        type="submit"
+        [disabled]="productForm().invalid() || loading()"
+        class="btn btn-primary"
+      >
+        @if (loading()) {
+          <span>Salvataggio...</span>
+        } @else {
+          <span>{{ isEditMode() ? 'Salva Modifiche' : 'Crea Prodotto' }}</span>
+        }
+      </button>
+    </div>
+  </form>
+</div>

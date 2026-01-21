@@ -1,0 +1,63 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login</h1>
+    
+    <form (submit)="onSubmit($event)">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [formField]="loginForm.email"
+          [class.error]="loginForm.email().touched() && loginForm.email().invalid()"
+        />
+        @if (loginForm.email().touched() && loginForm.email().invalid()) {
+          <span class="error-message">
+            @for (error of loginForm.email().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          [formField]="loginForm.password"
+          [class.error]="loginForm.password().touched() && loginForm.password().invalid()"
+        />
+        @if (loginForm.password().touched() && loginForm.password().invalid()) {
+          <span class="error-message">
+            @for (error of loginForm.password().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      @if (error()) {
+        <div class="alert alert-error">
+          {{ error() }}
+        </div>
+      }
+      
+      <button
+        type="submit"
+        [disabled]="loginForm().invalid() || loading()"
+        class="btn btn-primary"
+      >
+        @if (loading()) {
+          <span>Accesso in corso...</span>
+        } @else {
+          <span>Accedi</span>
+        }
+      </button>
+    </form>
+    
+    <p class="register-link">
+      Non hai un account? <a routerLink="/register">Registrati</a>
+    </p>
+  </div>
+</div>

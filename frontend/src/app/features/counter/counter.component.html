@@ -1,0 +1,38 @@
+<div class="counter-container">
+  <h1>Esercizio 1.1: Zoneless Change Detection</h1>
+  
+  <div class="counter-card">
+    <h2>Contatore</h2>
+    
+    <div class="counter-display">
+      <span class="counter-value">{{ count() }}</span>
+    </div>
+    
+    <div class="counter-info">
+      <p>Valore doppio: <strong>{{ doubleCount() }}</strong></p>
+      <p>È pari: <strong>{{ isEven() ? 'Sì' : 'No' }}</strong></p>
+    </div>
+    
+    <div class="counter-actions">
+      <button (click)="decrement()" class="btn btn-secondary">-</button>
+      <button (click)="reset()" class="btn btn-secondary">Reset</button>
+      <button (click)="increment()" class="btn btn-primary">+</button>
+    </div>
+    
+    @if (count() > 10) {
+      <div class="alert alert-info">
+        ⚠️ Il contatore è maggiore di 10!
+      </div>
+    }
+  </div>
+  
+  <div class="info-box">
+    <h3>Note sull'esercizio:</h3>
+    <ul>
+      <li>✅ Zoneless change detection abilitato</li>
+      <li>✅ Signals per stato reattivo</li>
+      <li>✅ Computed values per valori derivati</li>
+      <li>✅ Control flow &#64;if per rendering condizionale</li>
+    </ul>
+  </div>
+</div>

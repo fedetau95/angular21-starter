@@ -1,0 +1,96 @@
+.product-detail {
+  max-width: 800px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 3rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.detail-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-section {
+  margin: 1.5rem 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-section h3 {
+  margin-top: 0;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.category {
+  background: #e3f2fd;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-success {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+.badge-danger {
+  background: #ffcdd2;
+  color: #c62828;
+}
+
+.badge-warning {
+  background: #fff9c4;
+  color: #f57f17;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1565c0;
+}

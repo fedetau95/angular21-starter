@@ -1,0 +1,55 @@
+<div class="product-detail">
+  @if (loading) {
+    <div class="loading">Caricamento...</div>
+  } @else if (product) {
+    <div class="detail-header">
+      <a routerLink="/products" class="back-link">← Torna alla lista</a>
+      <div class="actions">
+        <a [routerLink]="['/products', product.id, 'edit']" class="btn btn-primary">Modifica</a>
+      </div>
+    </div>
+    
+    <div class="detail-card">
+      <h1>{{ product.name }}</h1>
+      
+      <div class="detail-section">
+        <h3>Descrizione</h3>
+        <p>{{ product.description || 'Nessuna descrizione' }}</p>
+      </div>
+      
+      <div class="detail-section">
+        <h3>Prezzo</h3>
+        <p class="price">{{ product.price | currency:'EUR' }}</p>
+      </div>
+      
+      <div class="detail-section">
+        <h3>Categoria</h3>
+        <span class="category">{{ product.category }}</span>
+      </div>
+      
+      <div class="detail-section">
+        <h3>Status</h3>
+        @switch (product.status) {
+          @case ('active') {
+            <span class="badge badge-success">Attivo</span>
+          }
+          @case ('inactive') {
+            <span class="badge badge-danger">Inattivo</span>
+          }
+          @case ('pending') {
+            <span class="badge badge-warning">In attesa</span>
+          }
+        }
+      </div>
+      
+      @if (product.created_at) {
+        <div class="detail-section">
+          <h3>Creato il</h3>
+          <p>{{ product.created_at | date:'medium' }}</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="error">Prodotto non trovato</div>
+  }
+</div>

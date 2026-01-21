@@ -1,0 +1,80 @@
+<div class="register-container">
+  <div class="register-card">
+    <h1>Registrati</h1>
+    
+    <form (submit)="onSubmit($event)">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input
+          type="text"
+          id="name"
+          [formField]="registerForm.name"
+          [class.error]="registerForm.name().touched() && registerForm.name().invalid()"
+        />
+        @if (registerForm.name().touched() && registerForm.name().invalid()) {
+          <span class="error-message">
+            @for (error of registerForm.name().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [formField]="registerForm.email"
+          [class.error]="registerForm.email().touched() && registerForm.email().invalid()"
+        />
+        @if (registerForm.email().touched() && registerForm.email().invalid()) {
+          <span class="error-message">
+            @for (error of registerForm.email().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          [formField]="registerForm.password"
+          [class.error]="registerForm.password().touched() && registerForm.password().invalid()"
+        />
+        @if (registerForm.password().touched() && registerForm.password().invalid()) {
+          <span class="error-message">
+            @for (error of registerForm.password().errors(); track error) {
+              {{ error.message }}
+            }
+          </span>
+        }
+      </div>
+      
+      @if (error()) {
+        <div class="alert alert-error">
+          {{ error() }}
+        </div>
+      }
+      
+      <button
+        type="submit"
+        [disabled]="registerForm().invalid() || loading()"
+        class="btn btn-primary"
+      >
+        @if (loading()) {
+          <span>Registrazione in corso...</span>
+        } @else {
+          <span>Registrati</span>
+        }
+      </button>
+    </form>
+    
+    <p class="login-link">
+      Hai già un account? <a routerLink="/login">Accedi</a>
+    </p>
+  </div>
+</div>

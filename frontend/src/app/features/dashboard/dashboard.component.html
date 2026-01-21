@@ -1,0 +1,24 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  
+  @if (authService.user(); as user) {
+    <div class="welcome-card">
+      <h2>Benvenuto, {{ user.name }}!</h2>
+      <p>Email: {{ user.email }}</p>
+    </div>
+  }
+  
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Prodotti</h3>
+      <p>Gestisci i tuoi prodotti</p>
+      <a routerLink="/products" class="btn btn-primary">Vai ai Prodotti</a>
+    </div>
+    
+    <div class="card">
+      <h3>Counter</h3>
+      <p>Esercizio Zoneless Change Detection</p>
+      <a routerLink="/counter" class="btn btn-primary">Vai al Counter</a>
+    </div>
+  </div>
+</div>
